@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  NavLink,
+} from "react-router-dom";
 
-function App() {
+import UsersPage from "./components/UsersPage";
+import TodosPage from "./components/TodosPage";
+
+import Card, {CardVariant} from "./components/Card";
+import EventsExample from "./components/EventsExample";
+
+import TodoItemPage from "./components/TodoItemPage";
+import UserItemPage from "./components/UserItemPage";
+
+// eslint-disable-next-line
+export default function () {
+  const [isClicked, setIsClicked] = React.useState(false);
+  
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <div>
+        <div>
+          <NavLink to="/">Main</NavLink>
+          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/todos">Todos</NavLink>
+        </div>
+        <Routes>
+          <Route path="/users" element={<UsersPage baseUrl={baseUrl} page="users" />} />
+          <Route path="/todos" element={<TodosPage baseUrl={baseUrl} page="todos" />} />
+          <Route path="/users/:id" element={<UserItemPage baseUrl={baseUrl} page="users"  />} />
+          <Route path="/todos/:id" element={<TodoItemPage baseUrl={baseUrl} page="todos" />} />
+        </Routes>
+        <EventsExample />
+        <Card
+          variant={CardVariant.primary}
+          width="200px"
+          height="200px"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <button
+          onClick={() => setIsClicked(prev => !prev)}
+          >Button</button>
+          {
+            isClicked ?
+            <div>PagChomp!</div> :
+            <div>SourPls!</div>
+          }
+        </Card>
+      </div>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
