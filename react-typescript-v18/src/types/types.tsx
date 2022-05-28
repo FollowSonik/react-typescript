@@ -17,10 +17,6 @@ export interface ITodo {
   completed: boolean;
 }
 
-export interface IURL {
-  baseUrl: string;
-}
-
 export interface IParams {
   id?: string;
 }

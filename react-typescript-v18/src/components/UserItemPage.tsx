@@ -3,10 +3,12 @@ import axios from "axios";
 
 import {useParams, useNavigate} from "react-router-dom";
 
-import {IUser, IURL, IParams} from "../types/types";
+import {IUser, IParams} from "../types/types";
+
+import config from "../config/config.json";
 
 // eslint-disable-next-line
-export default function ({baseUrl}: IURL) {
+export default function () {
   const [user, setUser] = React.useState<IUser | null>(null);
 
   const params = useParams() as IParams;
@@ -18,7 +20,7 @@ export default function ({baseUrl}: IURL) {
 
   async function fetchUser() {
     try {
-      const response = await axios.get<IUser>(`${baseUrl}/users/${params.id}`);
+      const response = await axios.get<IUser>(`${config.jsonplaceholder.baseUrl}/users/${params.id}`);
 
       setUser(response.data);
     } catch (e) {

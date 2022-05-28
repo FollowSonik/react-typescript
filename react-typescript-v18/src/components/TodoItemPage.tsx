@@ -3,10 +3,12 @@ import axios from "axios";
 
 import {useParams, useNavigate} from "react-router-dom";
 
-import {IParams, ITodo, IURL} from "../types/types";
+import {IParams, ITodo} from "../types/types";
+
+import config from "../config/config.json";
 
 // eslint-disable-next-line
-export default function ({baseUrl}: IURL) {
+export default function () {
   const [todo, setTodo] = React.useState<ITodo | null>(null);
 
   const params = useParams() as IParams;
@@ -18,7 +20,7 @@ export default function ({baseUrl}: IURL) {
 
   async function fetchTodo() {
     try {
-      const response = await axios.get<ITodo>(`${baseUrl}/todos/${params.id}`);
+      const response = await axios.get<ITodo>(`${config.jsonplaceholder.baseUrl}/todos/${params.id}`);
 
       setTodo(response.data);
     } catch (e) {

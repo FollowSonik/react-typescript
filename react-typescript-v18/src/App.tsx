@@ -18,8 +18,6 @@ import UserItemPage from "./components/UserItemPage";
 // eslint-disable-next-line
 export default function () {
   const [isClicked, setIsClicked] = React.useState(false);
-  
-  const baseUrl = "https://jsonplaceholder.typicode.com";
 
   return (
     <BrowserRouter>
@@ -30,10 +28,10 @@ export default function () {
           <NavLink to="/todos">Todos</NavLink>
         </div>
         <Routes>
-          <Route path="/users" element={<UsersPage baseUrl={baseUrl} />} />
-          <Route path="/todos" element={<TodosPage baseUrl={baseUrl} />} />
-          <Route path="/users/:id" element={<UserItemPage baseUrl={baseUrl}  />} />
-          <Route path="/todos/:id" element={<TodoItemPage baseUrl={baseUrl} />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/todos" element={<TodosPage />} />
+          <Route path="/users/:id" element={<UserItemPage />} />
+          <Route path="/todos/:id" element={<TodoItemPage />} />
         </Routes>
         <EventsExample />
         <Card

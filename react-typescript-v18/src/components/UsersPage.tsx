@@ -3,29 +3,31 @@ import axios from "axios";
 
 import {useNavigate} from "react-router-dom";
 
-import {IUser, IURL} from "../types/types";
+import {IUser} from "../types/types";
 import List from "./List";
 import UserItem from "./UserItem";
 
+import config from "../config/config.json";
+
 // eslint-disable-next-line
-export default function ({baseUrl}: IURL) {
+export default function () {
   const [users, setUsers] = React.useState<IUser[]>([]);
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get<IUser[]>(`${config.jsonplaceholder.baseUrl}/users`);
+  
+        setUsers(response.data);
+      } catch (e) {
+        console.error("VisLaudErrorUsers:", e);
+      }
+    }
+
     fetchUsers();
   }, []);
-
-  async function fetchUsers() {
-    try {
-      const response = await axios.get<IUser[]>(`${baseUrl}/users`);
-
-      setUsers(response.data);
-    } catch (e) {
-      console.error("VisLaudErrorUsers:", e);
-    }
-  }
 
   return (
     <List
