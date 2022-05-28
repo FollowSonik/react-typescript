@@ -1,7 +1,7 @@
 import axios from "axios";
 import {Dispatch} from "redux";
 
-import {UserTypeActions, UserAction} from "../../types/types";
+import {UserTypeActions, UserAction} from "../../types/user";
 
 // eslint-disable-next-line
 export default function () {
@@ -11,7 +11,9 @@ export default function () {
 
       const response = await axios.get("https://jsonplaceholder.typicode.com/users");
 
-      dispatch({type: UserTypeActions.FETCH_USERS_SUCCESS, payload: response.data});
+      setTimeout(() => {
+        dispatch({type: UserTypeActions.FETCH_USERS_SUCCESS, payload: response.data});
+      }, 2e3);
     } catch (e) {
       dispatch({type: UserTypeActions.FETCH_USERS_ERROR, payload: "User loading error."});
 

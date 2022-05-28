@@ -29,4 +29,7 @@ export interface IUserState {
   error: null | string;
 }
 
-export type UserAction = IFetchUsersAction | IFetchUsersErrorAction | IFetchUsersSuccessAction;
+export type UserAction =
+  IFetchUsersAction |
+  IFetchUsersErrorAction |
+  IFetchUsersSuccessAction;

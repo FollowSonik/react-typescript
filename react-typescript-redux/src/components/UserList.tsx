@@ -1,18 +1,16 @@
 import React from "react";
-import {useDispatch} from "react-redux";
 
+import useActions from "../hooks/useActions";
 import useTypedSelector from "../hooks/useTypedSelector";
-
-import fetchUsers from "../store/action-creator/user";
 
 // eslint-disable-next-line
 export default function () {
   const {users, error, loading} = useTypedSelector(state => state.user);
 
-  const dispatch = useDispatch();
+  const {default: fetchUsers} = useActions();
 
   React.useEffect(() => {
-    dispatch(fetchUsers() as any);
+    fetchUsers();
   }, []);
 
   if (loading) {
