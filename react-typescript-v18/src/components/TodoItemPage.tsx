@@ -6,19 +6,19 @@ import {useParams, useNavigate} from "react-router-dom";
 import {IParams, ITodo, IURL} from "../types/types";
 
 // eslint-disable-next-line
-export default function ({baseUrl, page}: IURL) {
+export default function ({baseUrl}: IURL) {
   const [todo, setTodo] = React.useState<ITodo | null>(null);
 
   const params = useParams() as IParams;
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    fetchTodo(page);
+    fetchTodo();
   }, []);
 
-  async function fetchTodo(page: string) {
+  async function fetchTodo() {
     try {
-      const response = await axios.get<ITodo>(`${baseUrl}/${page}/${params.id}`);
+      const response = await axios.get<ITodo>(`${baseUrl}/todos/${params.id}`);
 
       setTodo(response.data);
     } catch (e) {

@@ -8,18 +8,18 @@ import List from "./List";
 import UserItem from "./UserItem";
 
 // eslint-disable-next-line
-export default function ({baseUrl, page}: IURL) {
+export default function ({baseUrl}: IURL) {
   const [users, setUsers] = React.useState<IUser[]>([]);
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    fetchUsers(page);
+    fetchUsers();
   }, []);
 
-  async function fetchUsers(page: string) {
+  async function fetchUsers() {
     try {
-      const response = await axios.get<IUser[]>(`${baseUrl}/${page}`);
+      const response = await axios.get<IUser[]>(`${baseUrl}/users`);
 
       setUsers(response.data);
     } catch (e) {

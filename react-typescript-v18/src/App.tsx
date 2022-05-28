@@ -30,10 +30,10 @@ export default function () {
           <NavLink to="/todos">Todos</NavLink>
         </div>
         <Routes>
-          <Route path="/users" element={<UsersPage baseUrl={baseUrl} page="users" />} />
-          <Route path="/todos" element={<TodosPage baseUrl={baseUrl} page="todos" />} />
-          <Route path="/users/:id" element={<UserItemPage baseUrl={baseUrl} page="users"  />} />
-          <Route path="/todos/:id" element={<TodoItemPage baseUrl={baseUrl} page="todos" />} />
+          <Route path="/users" element={<UsersPage baseUrl={baseUrl} />} />
+          <Route path="/todos" element={<TodosPage baseUrl={baseUrl} />} />
+          <Route path="/users/:id" element={<UserItemPage baseUrl={baseUrl}  />} />
+          <Route path="/todos/:id" element={<TodoItemPage baseUrl={baseUrl} />} />
         </Routes>
         <EventsExample />
         <Card

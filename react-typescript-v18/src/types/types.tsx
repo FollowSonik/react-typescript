@@ -19,7 +19,6 @@ export interface ITodo {
 
 export interface IURL {
   baseUrl: string;
-  page: string;
 }
 
 export interface IParams {

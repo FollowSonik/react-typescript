@@ -8,18 +8,18 @@ import List from "./List";
 import TodoItem from "./TodoItem";
 
 // eslint-disable-next-line
-export default function ({baseUrl, page}: IURL) {
+export default function ({baseUrl}: IURL) {
   const [todos, setTodos] = React.useState<ITodo[]>([]);
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    fetchTodos(page);
+    fetchTodos();
   }, []);
 
-  async function fetchTodos(page: string) {
+  async function fetchTodos() {
     try {
-      const response = await axios.get<ITodo[]>(`${baseUrl}/${page}`);
+      const response = await axios.get<ITodo[]>(`${baseUrl}/todos`);
 
       setTodos(response.data);
     } catch (e) {
