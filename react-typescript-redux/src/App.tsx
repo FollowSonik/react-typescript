@@ -1,9 +1,10 @@
-function App() {
+import UserList from "./components/UserList";
+
+// eslint-disable-next-line
+export default function () {
   return (
     <div>
-      PagChomp!!!
+      <UserList />
     </div>
   );
 }
-
-export default App;

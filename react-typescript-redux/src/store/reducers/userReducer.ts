@@ -1,4 +1,4 @@
-import {IUserState, fetchUsers, IUserAction} from "../../types/todos";
+import {IUserState, UserTypeActions, IUserAction} from "../../types/types";
 
 const initialState: IUserState = {
   users: [],
@@ -6,13 +6,14 @@ const initialState: IUserState = {
   error: null
 };
 
+// eslint-disable-next-line
 export default function(state = initialState, action: IUserAction): IUserState {
   switch(action.type) {
-    case fetchUsers.FETCH_USERS:
+    case UserTypeActions.FETCH_USERS:
       return {loading: true, error: null, users: []};
-    case fetchUsers.FETCH_USERS_SUCCESS:
+    case UserTypeActions.FETCH_USERS_SUCCESS:
       return {loading: false, error: null, users: action.payload};
-    case fetchUsers.FETCH_USERS_ERROR:
+    case UserTypeActions.FETCH_USERS_ERROR:
       return {loading: false, error: action.payload, users: []};
     default: return state;
   }
