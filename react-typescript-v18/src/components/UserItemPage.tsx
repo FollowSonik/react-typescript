@@ -9,7 +9,7 @@ import {IUser, IURL, IParams} from "../types/types";
 export default function ({baseUrl, page}: IURL) {
   const [user, setUser] = React.useState<IUser | null>(null);
 
-  const params = useParams<IParams | any>();
+  const params = useParams() as IParams;
   const navigate = useNavigate();
 
   React.useEffect(() => {

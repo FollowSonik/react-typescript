@@ -9,7 +9,7 @@ import {IParams, ITodo, IURL} from "../types/types";
 export default function ({baseUrl, page}: IURL) {
   const [todo, setTodo] = React.useState<ITodo | null>(null);
 
-  const params = useParams<IParams | any>();
+  const params = useParams() as IParams;
   const navigate = useNavigate();
 
   React.useEffect(() => {

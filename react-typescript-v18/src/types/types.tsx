@@ -23,5 +23,5 @@ export interface IURL {
 }
 
 export interface IParams {
-  id: string;
+  id?: string;
 }
