@@ -57,9 +57,9 @@ export default function ({index, todo, todos, setTodos}: SingleTodoType): React.
       draggableId={todo.id.toString()}
       index={index}
     >
-      {(provided) => {
+      {(provided, snapshot) => {
         return <form
-          className="todos__single"
+          className={`todos__single ${snapshot.isDragging && "drag"}`}
           onSubmit={e => handleEdit(e, todo.id)}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

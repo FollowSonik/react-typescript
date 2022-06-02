@@ -20,9 +20,9 @@ export default function ({
 }: ITodos): React.ReactElement {
   return <div className="container">
     <Droppable droppableId="TodosList">
-      {(provided) => {
+      {(provided, snapshot) => {
         return <div
-            className="todos"
+            className={`todos ${snapshot.isDraggingOver && "dragactive"}`}
             ref={provided.innerRef}
             {...provided.droppableProps}          >
           <span className="todos__heading">
@@ -43,9 +43,9 @@ export default function ({
       }
     </Droppable>
     <Droppable droppableId="TodosRemove">
-      {(provided) => {
+      {(provided, snapshot) => {
         return <div
-            className="todos remove"
+            className={`todos remove ${snapshot.isDraggingOver && "dragcomplete"}`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
