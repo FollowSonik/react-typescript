@@ -11,8 +11,6 @@ interface ITodo {
 export default function ({todo, setTodo, handleAdd}: ITodo): React.ReactElement {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  console.log(inputRef.current?.value);
-
   return <form
       className="input"
       onSubmit={handleAdd}

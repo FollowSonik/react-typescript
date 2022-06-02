@@ -1,5 +1,7 @@
 import React from "react";
 
+import {Draggable} from "react-beautiful-dnd";
+
 import {AiFillEdit, AiFillDelete} from "react-icons/ai";
 import {MdDone} from "react-icons/md";
 
@@ -8,13 +10,14 @@ import ITodo from "./model";
 import "./styles.css";
 
 type SingleTodoType = {
+  index: number;
   todo: ITodo;
   todos: ITodo[];
   setTodos(todos: ITodo[]): any;
 }
 
 // eslint-disable-next-line
-export default function ({todo, todos, setTodos}: SingleTodoType): React.ReactElement {
+export default function ({index, todo, todos, setTodos}: SingleTodoType): React.ReactElement {
   const [isEdit, setIsEdit] = React.useState<boolean>(false);
   const [editTodo, setEditTodo] = React.useState<string>(todo.todo);
 
@@ -50,41 +53,51 @@ export default function ({todo, todos, setTodos}: SingleTodoType): React.ReactEl
     inputRef.current?.focus();
   }, [isEdit]);
 
-  return <form
-      className="todos__single"
-      onSubmit={e => handleEdit(e, todo.id)}
+  return <Draggable
+      draggableId={todo.id.toString()}
+      index={index}
     >
-    {isEdit ?
-      <input
-        ref={inputRef}
-        className="todos__single--text"
-        value={editTodo}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setEditTodo(e.target.value);
-        }}
-      /> :
-      todo.isDone ?
-      <s className="todos__single--text">
-        {todo.todo}
-      </s> :
-      <span className="todos__single--text">
-        {todo.todo}
-      </span>
-    }
-    <div>
-      <span className="icon" onClick={() => {
-        if (!(isEdit && todo.isDone)) {
-          setIsEdit(prev => !prev);
+      {(provided) => {
+        return <form
+          className="todos__single"
+          onSubmit={e => handleEdit(e, todo.id)}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+      >
+        {isEdit ?
+          <input
+            ref={inputRef}
+            className="todos__single--text"
+            value={editTodo}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setEditTodo(e.target.value);
+            }}
+          /> :
+          todo.isDone ?
+          <s className="todos__single--text">
+            {todo.todo}
+          </s> :
+          <span className="todos__single--text">
+            {todo.todo}
+          </span>
         }
-      }}>
-        <AiFillEdit />
-      </span>
-      <span className="icon" onClick={() => handleDelete(todo.id)}>
-        <AiFillDelete />
-      </span>
-      <span className="icon" onClick={() => handleDone(todo.id)}>
-        <MdDone />
-      </span>
-    </div>
-  </form>;
+        <div>
+          <span className="icon" onClick={() => {
+            if (!(isEdit && todo.isDone)) {
+              setIsEdit(prev => !prev);
+            }
+          }}>
+            <AiFillEdit />
+          </span>
+          <span className="icon" onClick={() => handleDelete(todo.id)}>
+            <AiFillDelete />
+          </span>
+          <span className="icon" onClick={() => handleDone(todo.id)}>
+            <MdDone />
+          </span>
+        </div>
+      </form>;
+    }}
+  </Draggable>
 }

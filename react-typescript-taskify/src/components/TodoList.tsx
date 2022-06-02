@@ -24,19 +24,20 @@ export default function ({
         return <div
             className="todos"
             ref={provided.innerRef}
-            {...provided.droppableProps}
-          >
+            {...provided.droppableProps}          >
           <span className="todos__heading">
             Active Tasks
           </span>
-          {todos.map(todo => {
+          {todos.map((todo, index) => {
             return <SingleTodo
+              index={index}
               todo={todo}
               todos={todos}
               key={todo.id}
               setTodos={setTodos}
             />;
           })}
+          {provided.placeholder}
         </div>;
         }
       }
@@ -51,14 +52,16 @@ export default function ({
           <span className="todos__heading">
           Completed Tasks
           </span>
-          {completedTodos.map(todo => {
+          {completedTodos.map((todo, index) => {
             return <SingleTodo
+              index={index}
               todo={todo}
               todos={completedTodos}
               key={todo.id}
               setTodos={setCompletedTodos}
             />;
           })}
+          {provided.placeholder}
         </div>;
       }}
     </Droppable>
