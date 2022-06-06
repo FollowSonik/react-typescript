@@ -1,8 +1,12 @@
+import React from "react";
+
+import {AnswerObject} from "../App";
+
 type Props = {
   question: string;
   answers: string[];
-  callback: any;
-  userAnswer: any;
+  callback(e: React.MouseEvent<HTMLButtonElement>): void;
+  userAnswer: AnswerObject | undefined;
   questionNumber: number;
   totalQuestions: number;
 }
@@ -24,8 +28,9 @@ export default function QuestionCard({
       {answers.map(answer => {
         return <div key={answer}>
           <button
-            disabled={userAnswer}
+            disabled={!!userAnswer}
             onClick={callback}
+            value={answer}
           >
             <span dangerouslySetInnerHTML={{__html: answer}} />
           </button>
