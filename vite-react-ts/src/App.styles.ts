@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0 20px;
     display: flex;
     justify-content: center;
+    font-weight: bold;
   }
 
   * {
@@ -50,5 +51,20 @@ export const Wrapper = styled.div`
     font-size: 70px;
     text-align: center;
     margin: 20px;
+  }
+
+  .start, .next {
+    cursor: pointer;
+    background: linear-gradient(180deg, #fff, #ffcc91);
+    bottom: 2px solid #d38558;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    height: 40px;
+    margin: 20px 0;
+    padding: 0 40px;
+  }
+
+  .start {
+    min-width: 200px;
   }
 `;
