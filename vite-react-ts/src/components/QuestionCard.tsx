@@ -22,7 +22,7 @@ export default function QuestionCard({
     <p dangerouslySetInnerHTML={{__html: question}}></p>
     <div>
       {answers.map(answer => {
-        return <div>
+        return <div key={answer}>
           <button
             disabled={userAnswer}
             onClick={callback}
