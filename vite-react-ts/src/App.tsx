@@ -4,7 +4,7 @@ import {fetchQuizQuestions, Difficulty, QuestionState} from "./API";
 
 import QuestionCard from "./components/QuestionCard";
 
-import {GlobalStyle} from "./App.styles";
+import {GlobalStyle, Wrapper} from "./App.styles";
 
 const TOTAL_QUESTIONS = 10;
 
@@ -69,7 +69,7 @@ export default function App(): React.ReactElement {
 
   return <>
     <GlobalStyle />
-    <div>
+    <Wrapper>
       <h1>React Quiz</h1>
       {(isGameOver || userAnswers.length === TOTAL_QUESTIONS) &&
       <button
@@ -98,6 +98,6 @@ export default function App(): React.ReactElement {
         onClick={nextQuestion}
       >Next Question</button>
       }
-    </div>
+    </Wrapper>
   </>;
 }
