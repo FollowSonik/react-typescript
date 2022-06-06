@@ -14,7 +14,7 @@ export default function App(): React.ReactElement {
   const [score, setScore] = React.useState(0);
   const [isGameOver, setIsGameOver] = React.useState(true);
 
-  fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY);
+  console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
 
   async function startTrivia() {}
 
